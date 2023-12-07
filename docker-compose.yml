@@ -1,0 +1,84 @@
+name: 'category-service'
+
+services:
+  
+  domic.category.api:
+    networks:
+      - domic
+    image: category_service:1.0.0
+    deploy:
+      resources:
+        limits:
+          memory: 200M
+        reservations:
+          memory: 200M
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: on-failure
+    ports:
+      - "1060-1080:443"
+    volumes:
+      - log:/app/CoreLogs
+      - ~\.aspnet\https\:/https/
+    environment:
+      - E-RabbitMQ-Host=host.docker.internal
+      - E-RabbitMQ-Port=5672
+      - E-RabbitMQ-Username=guest
+      - E-RabbitMQ-Password=guest
+      - I-RabbitMQ-Host=
+      - I-RabbitMQ-Port=
+      - I-RabbitMQ-Username=
+      - I-RabbitMQ-Password=
+      - RedisConnectionString=domic.category.redis:6379
+      - MongoConnectionString=
+      - C-SqlServerConnectionString=Server=domic.category.command.sql.server,1433;Database=CategoryService;User ID=sa;Password=Hasan313@@313!!;MultipleActiveResultSets=true;Integrated Security=false;
+      - Q-SqlServerConnectionString=Server=domic.category.query.sql.server,1433;Database=CategoryService;User ID=sa;Password=Hasan313@@313!!;MultipleActiveResultSets=true;Integrated Security=false;
+      - Host=domic.category.api
+      - Port=443
+      - ASPNETCORE_ENVIRONMENT=Production
+      - ASPNETCORE_URLS=https://+:443;http://+:80
+      - ASPNETCORE_Kestrel__Certificates__Default__Password=Dotris313@313%%
+      - ASPNETCORE_Kestrel__Certificates__Default__Path=/https/Karami.WebAPI.pfx
+    depends_on:
+      - domic.category.command.sql.server
+      - domic.category.query.sql.server
+      - domic.category.redis
+  
+  domic.category.command.sql.server:
+    networks:
+      - domic
+    image: 'mcr.microsoft.com/mssql/server'
+    container_name: 'category_command_sql_server'
+    ports:
+      - 1434:1433
+    environment:
+      - ACCEPT_EULA=Y
+      - SA_PASSWORD=Hasan313@@313!!
+  
+  domic.category.query.sql.server:
+    networks:
+      - domic
+    image: 'mcr.microsoft.com/mssql/server'
+    container_name: 'category_query_sql_server'
+    ports:
+      - 1422:1433
+    environment:
+      - ACCEPT_EULA=Y
+      - SA_PASSWORD=Hasan313@@313!!
+  
+  domic.category.redis:
+    networks:
+      - domic
+    image: 'redis'
+    container_name: 'category_redis'
+    command: 'redis-server'
+    ports:
+      - 6379:6379
+
+volumes:
+  log:
+
+networks:
+  domic:
+    external: true
