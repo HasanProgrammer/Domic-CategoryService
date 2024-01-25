@@ -6,7 +6,7 @@ using Karami.Core.Domain.Enumerations;
 namespace Karami.Domain.Category.Events;
 
 [MessageBroker(ExchangeType = Exchange.FanOut, Exchange = Broker.Category_Category_Exchange)]
-public class CategoryDeleted : DeleteDomainEvent
+public class CategoryDeleted : UpdateDomainEvent<string>
 {
-    public string Id { get; set; }
+    
 }

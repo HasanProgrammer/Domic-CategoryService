@@ -1,37 +1,24 @@
-﻿using Karami.Core.Domain.Enumerations;
+﻿using Karami.Core.Persistence.Configs;
 using Karami.Domain.Category.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Karami.Persistence.Configs.C;
 
-public class CategoryConfig : IEntityTypeConfiguration<Category>
+public class CategoryConfig : BaseEntityConfig<Category, string>
 {
-    public void Configure(EntityTypeBuilder<Category> builder)
+    public override void Configure(EntityTypeBuilder<Category> builder)
     {
-        builder.ToTable("Categories");
+        base.Configure(builder);
 
-        builder.HasKey(category => category.Id);
-        
         /*-----------------------------------------------------------*/
+        
+        //Configs
+        
+        builder.ToTable("Categories");
         
         builder.OwnsOne(category => category.Name, name => {
             name.Property(vo => vo.Value).IsRequired().HasMaxLength(100).HasColumnName("Name");
         });
-        
-        builder.OwnsOne(category => category.CreatedAt, createdAt => {
-            createdAt.Property(vo => vo.EnglishDate).IsRequired().HasColumnName("CreatedAt_EnglishDate");
-            createdAt.Property(vo => vo.PersianDate).IsRequired().HasColumnName("CreatedAt_PersianDate");
-        });
-        
-        builder.OwnsOne(category => category.UpdatedAt, updatedAt => {
-            updatedAt.Property(vo => vo.EnglishDate).IsRequired().HasColumnName("UpdatedAt_EnglishDate");
-            updatedAt.Property(vo => vo.PersianDate).IsRequired().HasColumnName("UpdatedAt_PersianDate");
-        });
-
-        builder.Property(category => category.IsActive)
-               .HasConversion(new EnumToNumberConverter<IsActive , int>())
-               .IsRequired();
     }
 }

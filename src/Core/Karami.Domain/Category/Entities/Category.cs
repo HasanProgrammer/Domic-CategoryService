@@ -23,28 +23,30 @@ public class Category : Entity<string>
     /// <summary>
     /// 
     /// </summary>
-    /// <param name="dotrisDateTime"></param>
+    /// <param name="dateTime"></param>
     /// <param name="id"></param>
+    /// <param name="createdBy"></param>
+    /// <param name="createdRole"></param>
     /// <param name="name"></param>
-    public Category(IDotrisDateTime dotrisDateTime, string id, string name)
+    public Category(IDateTime dateTime, string id, string createdBy, string createdRole, string name)
     {
         var nowDateTime        = DateTime.Now;
-        var nowPersianDateTime = dotrisDateTime.ToPersianShortDate(nowDateTime);
+        var nowPersianDateTime = dateTime.ToPersianShortDate(nowDateTime);
 
-        Id        = id;
-        Name      = new Name(name);
-        CreatedAt = new CreatedAt(nowDateTime, nowPersianDateTime);
-        UpdatedAt = new UpdatedAt(nowDateTime, nowPersianDateTime);
-        IsActive  = IsActive.Active;
+        Id          = id;
+        CreatedBy   = createdBy;
+        CreatedRole = createdRole;
+        Name        = new Name(name);
+        CreatedAt   = new CreatedAt(nowDateTime, nowPersianDateTime);
         
         AddEvent(
             new CategoryCreated {
-                Id   = id   , 
-                Name = name ,
-                CreatedAt_EnglishDate = nowDateTime        ,
-                UpdatedAt_EnglishDate = nowDateTime        ,
-                CreatedAt_PersianDate = nowPersianDateTime ,
-                UpdatedAt_PersianDate = nowPersianDateTime
+                Id          = id          ,
+                CreatedBy   = createdBy   ,
+                CreatedRole = createdRole ,
+                Name        = name        ,
+                CreatedAt_EnglishDate = nowDateTime ,
+                CreatedAt_PersianDate = nowPersianDateTime
             }
         );
     }
@@ -56,20 +58,25 @@ public class Category : Entity<string>
     /// <summary>
     /// 
     /// </summary>
-    /// <param name="dotrisDateTime"></param>
+    /// <param name="dateTime"></param>
+    /// <param name="updatedBy"></param>
     /// <param name="name"></param>
-    public void Change(IDotrisDateTime dotrisDateTime, string name)
+    public void Change(IDateTime dateTime, string updatedBy, string updatedRole, string name)
     {
         var nowDateTime        = DateTime.Now;
-        var nowPersianDateTime = dotrisDateTime.ToPersianShortDate(nowDateTime);
+        var nowPersianDateTime = dateTime.ToPersianShortDate(nowDateTime);
         
-        Name      = new Name(name);
-        UpdatedAt = new UpdatedAt(nowDateTime, nowPersianDateTime);
+        Name        = new Name(name);
+        UpdatedBy   = updatedBy;
+        UpdatedRole = updatedRole;
+        UpdatedAt   = new UpdatedAt(nowDateTime, nowPersianDateTime);
         
         AddEvent(
             new CategoryUpdated {
-                Id   = Id   , 
-                Name = name ,
+                Id          = Id          ,
+                UpdatedBy   = updatedBy   ,
+                UpdatedRole = updatedRole ,
+                Name        = name        ,
                 UpdatedAt_EnglishDate = nowDateTime,
                 UpdatedAt_PersianDate = nowPersianDateTime
             }
@@ -79,21 +86,26 @@ public class Category : Entity<string>
     /// <summary>
     /// 
     /// </summary>
-    /// <param name="dotrisDateTime"></param>
+    /// <param name="dateTime"></param>
     /// <param name="id"></param>
-    public void Delete(IDotrisDateTime dotrisDateTime, string id)
+    /// <param name="updatedBy"></param>
+    /// <param name="updatedRole"></param>
+    public void Delete(IDateTime dateTime, string id, string updatedBy, string updatedRole)
     {
         var nowDateTime        = DateTime.Now;
-        var nowPersianDateTime = dotrisDateTime.ToPersianShortDate(nowDateTime);
+        var nowPersianDateTime = dateTime.ToPersianShortDate(nowDateTime);
 
-        IsDeleted = IsDeleted.Delete;
-        UpdatedAt = new UpdatedAt(nowDateTime, nowPersianDateTime);
+        IsDeleted   = IsDeleted.Delete;
+        UpdatedBy   = updatedBy;
+        UpdatedRole = updatedRole;
+        UpdatedAt   = new UpdatedAt(nowDateTime, nowPersianDateTime);
         
         AddEvent(
-            new CategoryDeleted
-            {
-                Id                    = id                  ,
-                UpdatedAt_EnglishDate = nowDateTime         ,
+            new CategoryDeleted {
+                Id          = id          ,
+                UpdatedBy   = updatedBy   ,
+                UpdatedRole = updatedRole ,
+                UpdatedAt_EnglishDate = nowDateTime ,
                 UpdatedAt_PersianDate = nowPersianDateTime
             }
         );

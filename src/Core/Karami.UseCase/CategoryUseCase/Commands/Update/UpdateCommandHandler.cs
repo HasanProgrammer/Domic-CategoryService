@@ -17,22 +17,20 @@ public class UpdateCommandHandler : ICommandHandler<UpdateCommand, string>
 {
     private readonly object _validationResult;
 
-    private readonly IDotrisDateTime            _dotrisDateTime;
+    private readonly IDateTime                  _dateTime;
     private readonly ISerializer                _serializer;
-    private readonly IJsonWebToken                  _jsonWebToken;
+    private readonly IJsonWebToken              _jsonWebToken;
     private readonly IEventCommandRepository    _eventCommandRepository;
     private readonly ICategoryCommandRepository _categoryCommandRepository;
 
-    public UpdateCommandHandler(ICategoryCommandRepository categoryCommandRepository, 
-        IEventCommandRepository eventCommandRepository, 
-        IDotrisDateTime dotrisDateTime,
-        ISerializer serializer, 
+    public UpdateCommandHandler(ICategoryCommandRepository categoryCommandRepository,
+        IEventCommandRepository eventCommandRepository, IDateTime dateTime, ISerializer serializer,
         IJsonWebToken jsonWebToken
     )
     {
         _serializer                = serializer;
-        _jsonWebToken                  = jsonWebToken;
-        _dotrisDateTime            = dotrisDateTime;
+        _jsonWebToken              = jsonWebToken;
+        _dateTime                  = dateTime;
         _eventCommandRepository    = eventCommandRepository;
         _categoryCommandRepository = categoryCommandRepository;
     }
@@ -42,14 +40,17 @@ public class UpdateCommandHandler : ICommandHandler<UpdateCommand, string>
     public async Task<string> HandleAsync(UpdateCommand command, CancellationToken cancellationToken)
     {
         var targetCategory = _validationResult as Category;
+
+        var updatedBy = _jsonWebToken.GetIdentityUserId(command.Token);
+        var updatedRole = _serializer.Serialize( _jsonWebToken.GetRoles(command.Token) );
         
-        targetCategory.Change(_dotrisDateTime, command.Name);
+        targetCategory.Change(_dateTime, updatedBy, updatedRole, command.Name);
         
         _categoryCommandRepository.Change(targetCategory);
 
         #region OutBox
 
-        var events = targetCategory.GetEvents.ToEntityOfEvent(_dotrisDateTime, _serializer, Service.CategoryService, 
+        var events = targetCategory.GetEvents.ToEntityOfEvent(_dateTime, _serializer, Service.CategoryService, 
             Table.Category, Action.Create, _jsonWebToken.GetUsername(command.Token)
         );
 
