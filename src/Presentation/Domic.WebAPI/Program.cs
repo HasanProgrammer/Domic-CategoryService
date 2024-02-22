@@ -24,10 +24,9 @@ builder.RegisterELK();
 builder.RegisterEntityFrameworkCoreCommand<C_SQLContext, string>();
 builder.RegisterCommandRepositories();
 builder.RegisterCommandQueryUseCases();
-builder.RegisterMessageBroker();
-builder.RegisterJobs();
 builder.RegisterRedisCaching();
 builder.RegisterGrpcServer();
+builder.RegisterMessageBroker();
 builder.RegisterEventsPublisher();
 builder.RegisterServices();
 
