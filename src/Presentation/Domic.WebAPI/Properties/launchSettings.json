@@ -5,6 +5,7 @@
       "launchUrl": "swagger",
       "environmentVariables": {
         "Elastic-Host": "http://localhost:9200",
+        "Elastic-Index": "http://localhost:9200",
         "Elastic-Username": "",
         "Elastic-Password": "",
         "E-RabbitMQ-Host": "localhost",
