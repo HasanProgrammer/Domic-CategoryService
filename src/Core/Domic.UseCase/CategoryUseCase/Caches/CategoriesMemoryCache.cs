@@ -6,7 +6,7 @@ using Domic.UseCase.CategoryUseCase.DTOs.ViewModels;
 
 namespace Domic.UseCase.CategoryUseCase.Caches;
 
-public class CategoriesMemoryCache : IMemoryCacheSetter<List<CategoriesViewModel>>
+public class CategoriesMemoryCache : IInternalDistributedCacheHandler<List<CategoriesViewModel>>
 {
     private readonly ICategoryCommandRepository _categoryCommandRepository;
 

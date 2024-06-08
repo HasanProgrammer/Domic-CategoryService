@@ -24,7 +24,7 @@ builder.RegisterELK();
 builder.RegisterEntityFrameworkCoreCommand<C_SQLContext, string>();
 builder.RegisterCommandRepositories();
 builder.RegisterCommandQueryUseCases();
-builder.RegisterRedisCaching();
+builder.RegisterDistributedCaching();
 builder.RegisterGrpcServer();
 builder.RegisterMessageBroker();
 builder.RegisterEventsPublisher();
@@ -78,4 +78,4 @@ application.Run();
 
 //For Integration Test
 
-public partial class Program {}
+public partial class Program;
