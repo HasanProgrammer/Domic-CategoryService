@@ -5,7 +5,7 @@ using Domic.Core.Domain.Enumerations;
 
 namespace Domic.Domain.Category.Events;
 
-[MessageBroker(ExchangeType = Exchange.FanOut, Exchange = Broker.Category_Category_Exchange)]
+[EventConfig(ExchangeType = Exchange.FanOut, Exchange = Broker.Category_Category_Exchange)]
 public class CategoryDeleted : UpdateDomainEvent<string>
 {
     
