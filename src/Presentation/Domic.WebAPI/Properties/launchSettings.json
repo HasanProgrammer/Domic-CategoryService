@@ -6,8 +6,8 @@
       "environmentVariables": {
         "Elastic-Host": "http://localhost:9200",
         "Elastic-Index": "category",
-        "Elastic-Username": "",
-        "Elastic-Password": "",
+        "Elastic-Username": "domic",
+        "Elastic-Password": "Domic123!@#",
         "E-RabbitMQ-Host": "localhost",
         "E-RabbitMQ-Port": "5672",
         "E-RabbitMQ-Username": "domic",
@@ -20,10 +20,10 @@
         "E-Kafka-Username" : "",
         "E-Kafka-Password" : "",
         "E-RedisConnectionString": "127.0.0.1:6379",
-        "I-RedisConnectionString": "127.0.0.1:6379",
+        "I-RedisConnectionString": "",
         "MongoConnectionString": "",
         "C-SqlServerConnectionString": "Server=127.0.0.1,1633;Database=C-CategoryService;User ID=sa;Password=Domic123!@#;MultipleActiveResultSets=true;Integrated Security=false;",
-        "Q-SqlServerConnectionString": "Server=127.0.0.1,1633;Database=Q-CategoryService;User ID=sa;Password=Domic123!@#;MultipleActiveResultSets=true;Integrated Security=false;",
+        "Q-SqlServerConnectionString": "",
         "Host": "localhost",
         "Port": "7001",
         "ASPNETCORE_ENVIRONMENT": "Development"
@@ -38,12 +38,6 @@
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
-    },
-    "Docker": {
-      "commandName": "Docker",
-      "launchUrl": "{Scheme}://{ServiceHost}:{ServicePort}/swagger",
-      "publishAllPorts": true,
-      "useSSL": true
     }
   },
   "$schema": "https://json.schemastore.org/launchsettings.json",
