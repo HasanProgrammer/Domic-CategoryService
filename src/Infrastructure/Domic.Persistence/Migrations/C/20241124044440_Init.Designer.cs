@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Domic.Persistence.Migrations.C
 {
     [DbContext(typeof(SQLContext))]
-    [Migration("20240125140634_Init")]
+    [Migration("20241124044440_Init")]
     partial class Init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -39,12 +39,6 @@ namespace Domic.Persistence.Migrations.C
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("CreatedBy")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("CreatedRole")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<int>("IsActive")
                         .HasColumnType("int");
 
@@ -63,17 +57,10 @@ namespace Domic.Persistence.Migrations.C
                     b.Property<string>("Type")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("UpdatedAt_EnglishDate")
+                    b.Property<DateTime?>("UpdatedAt_EnglishDate")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("UpdatedAt_PersianDate")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("UpdatedBy")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("UpdatedRole")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("User")
