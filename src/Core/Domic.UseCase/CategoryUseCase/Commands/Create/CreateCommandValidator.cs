@@ -13,9 +13,7 @@ public class CreateCommandValidator : IValidator<CreateCommand>
 
     public async Task<object> ValidateAsync(CreateCommand input, CancellationToken cancellationToken)
     {
-        var result = await _categoryCommandRepository.FindByNameAsync(input.Name, cancellationToken);
-        
-        if (result is not null)
+        if (await _categoryCommandRepository.IsExistByNameAsync(input.Name, cancellationToken))
             throw new UseCaseException("فیلد نام قبلا انتخاب شده است !");
 
         return default;

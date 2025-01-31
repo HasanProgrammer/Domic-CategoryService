@@ -24,26 +24,28 @@ public class Category : Entity<string>
     /// 
     /// </summary>
     /// <param name="dateTime"></param>
-    /// <param name="id"></param>
-    /// <param name="createdBy"></param>
-    /// <param name="createdRole"></param>
+    /// <param name="globalUniqueIdGenerator"></param>
+    /// <param name="identityUser"></param>
+    /// <param name="serializer"></param>
     /// <param name="name"></param>
-    public Category(IDateTime dateTime, string id, string createdBy, string createdRole, string name)
+    public Category(IDateTime dateTime, IGlobalUniqueIdGenerator globalUniqueIdGenerator, IIdentityUser identityUser,
+        ISerializer serializer, string name
+    )
     {
         var nowDateTime        = DateTime.Now;
         var nowPersianDateTime = dateTime.ToPersianShortDate(nowDateTime);
 
-        Id          = id;
-        CreatedBy   = createdBy;
-        CreatedRole = createdRole;
+        Id          = globalUniqueIdGenerator.GetRandom(6);
+        CreatedBy   = identityUser.GetIdentity();
+        CreatedRole = serializer.Serialize(identityUser.GetRoles());
         Name        = new Name(name);
         CreatedAt   = new CreatedAt(nowDateTime, nowPersianDateTime);
         
         AddEvent(
             new CategoryCreated {
-                Id          = id          ,
-                CreatedBy   = createdBy   ,
-                CreatedRole = createdRole ,
+                Id          = Id          ,
+                CreatedBy   = CreatedBy   ,
+                CreatedRole = CreatedRole ,
                 Name        = name        ,
                 CreatedAt_EnglishDate = nowDateTime ,
                 CreatedAt_PersianDate = nowPersianDateTime
@@ -59,23 +61,26 @@ public class Category : Entity<string>
     /// 
     /// </summary>
     /// <param name="dateTime"></param>
-    /// <param name="updatedBy"></param>
+    /// <param name="identityUser"></param>
+    /// <param name="serializer"></param>
     /// <param name="name"></param>
-    public void Change(IDateTime dateTime, string updatedBy, string updatedRole, string name)
+    public void Change(IDateTime dateTime, IIdentityUser identityUser,
+        ISerializer serializer, string name
+    )
     {
         var nowDateTime        = DateTime.Now;
         var nowPersianDateTime = dateTime.ToPersianShortDate(nowDateTime);
         
         Name        = new Name(name);
-        UpdatedBy   = updatedBy;
-        UpdatedRole = updatedRole;
+        UpdatedBy   = identityUser.GetIdentity();
+        UpdatedRole = serializer.Serialize(identityUser.GetRoles());
         UpdatedAt   = new UpdatedAt(nowDateTime, nowPersianDateTime);
         
         AddEvent(
             new CategoryUpdated {
                 Id          = Id          ,
-                UpdatedBy   = updatedBy   ,
-                UpdatedRole = updatedRole ,
+                UpdatedBy   = UpdatedBy   ,
+                UpdatedRole = UpdatedRole ,
                 Name        = name        ,
                 UpdatedAt_EnglishDate = nowDateTime,
                 UpdatedAt_PersianDate = nowPersianDateTime
@@ -87,24 +92,26 @@ public class Category : Entity<string>
     /// 
     /// </summary>
     /// <param name="dateTime"></param>
+    /// <param name="identityUser"></param>
+    /// <param name="serializer"></param>
     /// <param name="id"></param>
-    /// <param name="updatedBy"></param>
-    /// <param name="updatedRole"></param>
-    public void Delete(IDateTime dateTime, string id, string updatedBy, string updatedRole)
+    public void Delete(IDateTime dateTime, IIdentityUser identityUser,
+        ISerializer serializer, string id
+    )
     {
         var nowDateTime        = DateTime.Now;
         var nowPersianDateTime = dateTime.ToPersianShortDate(nowDateTime);
 
         IsDeleted   = IsDeleted.Delete;
-        UpdatedBy   = updatedBy;
-        UpdatedRole = updatedRole;
+        UpdatedBy   = identityUser.GetIdentity();
+        UpdatedRole = serializer.Serialize(identityUser.GetRoles());
         UpdatedAt   = new UpdatedAt(nowDateTime, nowPersianDateTime);
         
         AddEvent(
             new CategoryDeleted {
                 Id          = id          ,
-                UpdatedBy   = updatedBy   ,
-                UpdatedRole = updatedRole ,
+                UpdatedBy   = UpdatedBy   ,
+                UpdatedRole = UpdatedRole ,
                 UpdatedAt_EnglishDate = nowDateTime ,
                 UpdatedAt_PersianDate = nowPersianDateTime
             }

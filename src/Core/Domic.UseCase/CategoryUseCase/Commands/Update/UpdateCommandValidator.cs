@@ -19,7 +19,7 @@ public class UpdateCommandValidator : IValidator<UpdateCommand>
             throw new UseCaseException( string.Format("موجودیتی با شناسه {0} وجود خارجی ندارد !", input.Id) );
 
         if (!targetCategory.Name.Value.Equals(input.Name))
-            if (await _categoryCommandRepository.FindByNameAsync(input.Name, cancellationToken) is not null)
+            if (await _categoryCommandRepository.IsExistByNameAsync(input.Name, cancellationToken))
                 throw new UseCaseException("نام مورد نظر شما قبلا انتخاب شده است !");
 
         return targetCategory;

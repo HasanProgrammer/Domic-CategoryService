@@ -4,6 +4,5 @@ namespace Domic.UseCase.CategoryUseCase.Commands.Delete;
 
 public class DeleteCommand : ICommand<string>
 {
-    public string Token { get; set; }
-    public string Id    { get; set; }
+    public string Id { get; set; }
 }

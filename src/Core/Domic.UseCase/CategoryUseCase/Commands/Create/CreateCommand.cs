@@ -4,6 +4,5 @@ namespace Domic.UseCase.CategoryUseCase.Commands.Create;
 
 public class CreateCommand : ICommand<string>
 {
-    public string Token { get; set; }
-    public string Name  { get; set; }
+    public string Name { get; set; }
 }

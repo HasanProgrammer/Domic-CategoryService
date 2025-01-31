@@ -20,16 +20,29 @@ public partial class CategoryCommandRepository
     public async Task AddAsync(Category entity, CancellationToken cancellationToken)
         => await _sqlContext.Categories.AddAsync(entity, cancellationToken);
 
-    public void Change(Category entity) => _sqlContext.Categories.Update(entity);
+    public Task ChangeAsync(Category entity, CancellationToken cancellationToken)
+    {
+        _sqlContext.Categories.Update(entity);
 
-    public void Remove(Category entity) => _sqlContext.Categories.Remove(entity);
+        return Task.CompletedTask;
+    }
+
+    public Task RemoveAsync(Category entity, CancellationToken cancellationToken)
+    {
+        _sqlContext.Categories.Remove(entity);
+
+        return Task.CompletedTask;
+    }
 }
 
 //Query
 public partial class CategoryCommandRepository
 {
-    public async Task<Category> FindByIdAsync(object id, CancellationToken cancellationToken)
-        => await _sqlContext.Categories.FirstOrDefaultAsync(category => category.Id.Equals(id), cancellationToken);
+    public Task<Category> FindByIdAsync(object id, CancellationToken cancellationToken)
+        => _sqlContext.Categories.FirstOrDefaultAsync(category => category.Id.Equals(id), cancellationToken);
+
+    public Task<bool> IsExistByNameAsync(string name, CancellationToken cancellationToken) 
+        =>  _sqlContext.Categories.AnyAsync(category => category.Name.Value == name);
 
     public async Task<IEnumerable<Category>> FindAllWithOrderingAsync(Order order, bool accending, 
         CancellationToken cancellationToken
@@ -43,7 +56,4 @@ public partial class CategoryCommandRepository
             _ => null
         };
     }
-
-    public async Task<Category> FindByNameAsync(string name, CancellationToken cancellationToken)
-        => await _sqlContext.Categories.FirstOrDefaultAsync(category => category.Name.Value.Equals(name));
 }

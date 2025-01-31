@@ -74,17 +74,15 @@ public partial class RpcRequestExtension
     /// 
     /// </summary>
     /// <param name="request"></param>
-    /// <param name="token"></param>
     /// <typeparam name="T"></typeparam>
     /// <returns></returns>
-    public static T ToCommand<T>(this CreateRequest request, string token)
+    public static T ToCommand<T>(this CreateRequest request)
     {
         object Request = null;
 
         if (typeof(T) == typeof(CreateCommand))
         {
             Request = new CreateCommand {
-                Token = token ,
                 Name  = request.Name?.Value 
             };
         }
@@ -96,17 +94,15 @@ public partial class RpcRequestExtension
     /// 
     /// </summary>
     /// <param name="request"></param>
-    /// <param name="token"></param>
     /// <typeparam name="T"></typeparam>
     /// <returns></returns>
-    public static T ToCommand<T>(this UpdateRequest request, string token)
+    public static T ToCommand<T>(this UpdateRequest request)
     {
         object Request = null;
 
         if (typeof(T) == typeof(UpdateCommand))
         {
             Request = new UpdateCommand {
-                Token = token                   ,
                 Id    = request.TargetId?.Value ,
                 Name  = request.Name?.Value
             };
@@ -119,17 +115,15 @@ public partial class RpcRequestExtension
     /// 
     /// </summary>
     /// <param name="request"></param>
-    /// <param name="token"></param>
     /// <typeparam name="T"></typeparam>
     /// <returns></returns>
-    public static T ToCommand<T>(this DeleteRequest request, string token)
+    public static T ToCommand<T>(this DeleteRequest request)
     {
         object Request = null;
 
         if (typeof(T) == typeof(DeleteCommand))
         {
             Request = new DeleteCommand {
-                Token = token ,
                 Id    = request.TargetId?.Value
             };
         }

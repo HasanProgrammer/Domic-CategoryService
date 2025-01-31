@@ -8,17 +8,7 @@ public interface ICategoryCommandRepository : ICommandRepository<Entities.Catego
     /// 
     /// </summary>
     /// <param name="name"></param>
-    /// <returns></returns>
-    /// <exception cref="NotImplementedException"></exception>
-    public Entities.Category FindByName(string name) => throw new NotImplementedException();
-    
-    /// <summary>
-    /// 
-    /// </summary>
-    /// <param name="name"></param>
     /// <param name="cancellationToken"></param>
     /// <returns></returns>
-    /// <exception cref="NotImplementedException"></exception>
-    public Task<Entities.Category> FindByNameAsync(string name, CancellationToken cancellationToken) 
-        => throw new NotImplementedException();
+    public Task<bool> IsExistByNameAsync(string name, CancellationToken cancellationToken);
 }
