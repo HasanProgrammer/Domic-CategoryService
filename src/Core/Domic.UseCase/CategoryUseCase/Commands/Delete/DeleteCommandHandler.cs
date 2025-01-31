@@ -19,7 +19,7 @@ public class DeleteCommandHandler : ICommandHandler<DeleteCommand, string>
     private readonly ICategoryCommandRepository _categoryCommandRepository;
 
     public DeleteCommandHandler(ICategoryCommandRepository categoryCommandRepository, IDateTime dateTime, 
-        ISerializer serializer, [FromKeyedServices("Http1")] IIdentityUser identityUser
+        ISerializer serializer, [FromKeyedServices("Http2")] IIdentityUser identityUser
     )
     {
         _dateTime                  = dateTime;

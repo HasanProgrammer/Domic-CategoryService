@@ -17,7 +17,7 @@ public class CreateCommandHandler : ICommandHandler<CreateCommand, string>
 
     public CreateCommandHandler(ICategoryCommandRepository categoryCommandRepository, IDateTime dateTime, 
         ISerializer serializer, IGlobalUniqueIdGenerator idGenerator, 
-        [FromKeyedServices("Http1")] IIdentityUser identityUser
+        [FromKeyedServices("Http2")] IIdentityUser identityUser
     )
     {
         _dateTime                  = dateTime;

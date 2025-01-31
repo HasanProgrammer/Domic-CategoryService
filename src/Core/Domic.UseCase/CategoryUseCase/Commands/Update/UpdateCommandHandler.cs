@@ -19,7 +19,7 @@ public class UpdateCommandHandler : ICommandHandler<UpdateCommand, string>
     private readonly ICategoryCommandRepository _categoryCommandRepository;
 
     public UpdateCommandHandler(ICategoryCommandRepository categoryCommandRepository, IDateTime dateTime, 
-        ISerializer serializer, [FromKeyedServices("Http1")] IIdentityUser identityUser
+        ISerializer serializer, [FromKeyedServices("Http2")] IIdentityUser identityUser
     )
     {
         _serializer                = serializer;
