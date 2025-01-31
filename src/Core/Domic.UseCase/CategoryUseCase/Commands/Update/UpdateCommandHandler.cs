@@ -32,6 +32,7 @@ public class UpdateCommandHandler : ICommandHandler<UpdateCommand, string>
 
     [WithValidation]
     [WithTransaction]
+    [WithCleanCache(Keies = "Categories")]
     public async Task<string> HandleAsync(UpdateCommand command, CancellationToken cancellationToken)
     {
         var targetCategory = _validationResult as Category;

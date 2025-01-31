@@ -32,6 +32,7 @@ public class DeleteCommandHandler : ICommandHandler<DeleteCommand, string>
 
     [WithValidation]
     [WithTransaction]
+    [WithCleanCache(Keies = "Categories")]
     public async Task<string> HandleAsync(DeleteCommand command, CancellationToken cancellationToken)
     {
         var targetCategory = _validationResult as Category;
