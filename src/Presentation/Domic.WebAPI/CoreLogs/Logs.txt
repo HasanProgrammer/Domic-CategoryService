@@ -1,0 +1,40 @@
+
+ Date: 1403/12/09 | Message: Already closed: The AMQP operation was interrupted: AMQP close-reason, initiated by Peer, code=320, text='CONNECTION_FORCED - broker forced connection closure with reason 'shutdown'', classId=0, methodId=0 | Source: RabbitMQ.Client.Exceptions.AlreadyClosedException: Already closed: The AMQP operation was interrupted: AMQP close-reason, initiated by Peer, code=320, text='CONNECTION_FORCED - broker forced connection closure with reason 'shutdown'', classId=0, methodId=0
+   at RabbitMQ.Client.Framing.Impl.AutorecoveringConnection.CreateModel()
+   at Domic.Core.Infrastructure.Concretes.ExternalMessageBroker.PublishAsync(CancellationToken cancellationToken) 
+
+
+ Date: 1403/12/09 | Message: Already closed: The AMQP operation was interrupted: AMQP close-reason, initiated by Peer, code=320, text='CONNECTION_FORCED - broker forced connection closure with reason 'shutdown'', classId=0, methodId=0 | Source: RabbitMQ.Client.Exceptions.AlreadyClosedException: Already closed: The AMQP operation was interrupted: AMQP close-reason, initiated by Peer, code=320, text='CONNECTION_FORCED - broker forced connection closure with reason 'shutdown'', classId=0, methodId=0
+   at RabbitMQ.Client.Framing.Impl.AutorecoveringConnection.CreateModel()
+   at Domic.Core.Infrastructure.Concretes.ExternalMessageBroker.<>c__DisplayClass18_0`1.<PublishAsync>b__3()
+   at System.Threading.ExecutionContext.RunFromThreadPoolDispatchLoop(Thread threadPoolThread, ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location ---
+   at System.Threading.ExecutionContext.RunFromThreadPoolDispatchLoop(Thread threadPoolThread, ExecutionContext executionContext, ContextCallback callback, Object state)
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+--- End of stack trace from previous location ---
+   at Polly.AsyncPolicy.<>c__DisplayClass40_0.<<ImplementationAsync>b__0>d.MoveNext()
+--- End of stack trace from previous location ---
+   at Polly.Retry.AsyncRetryEngine.ImplementationAsync[TResult](Func`3 action, Context context, CancellationToken cancellationToken, ExceptionPredicates shouldRetryExceptionPredicates, ResultPredicates`1 shouldRetryResultPredicates, Func`5 onRetryAsync, Int32 permittedRetryCount, IEnumerable`1 sleepDurationsEnumerable, Func`4 sleepDurationProvider, Boolean continueOnCapturedContext)
+   at Polly.AsyncPolicy.ExecuteAsync(Func`3 action, Context context, CancellationToken cancellationToken, Boolean continueOnCapturedContext)
+   at Domic.Core.Infrastructure.Extensions.ExceptionExtension.CentralExceptionLoggerAsync(Exception e, IHostEnvironment hostEnvironment, IGlobalUniqueIdGenerator globalUniqueIdGenerator, IExternalMessageBroker externalMessageBroker, IDateTime dateTime, String service, String action, CancellationToken cancellationToken) 
+
+
+ Date: 1403/12/17 | Message: Already closed: The AMQP operation was interrupted: AMQP close-reason, initiated by Peer, code=320, text='CONNECTION_FORCED - broker forced connection closure with reason 'shutdown'', classId=0, methodId=0 | Source: RabbitMQ.Client.Exceptions.AlreadyClosedException: Already closed: The AMQP operation was interrupted: AMQP close-reason, initiated by Peer, code=320, text='CONNECTION_FORCED - broker forced connection closure with reason 'shutdown'', classId=0, methodId=0
+   at RabbitMQ.Client.Framing.Impl.AutorecoveringConnection.CreateModel()
+   at Domic.Core.Infrastructure.Concretes.ExternalMessageBroker.PublishAsync(CancellationToken cancellationToken) 
+
+
+ Date: 1403/12/17 | Message: Already closed: The AMQP operation was interrupted: AMQP close-reason, initiated by Peer, code=320, text='CONNECTION_FORCED - broker forced connection closure with reason 'shutdown'', classId=0, methodId=0 | Source: RabbitMQ.Client.Exceptions.AlreadyClosedException: Already closed: The AMQP operation was interrupted: AMQP close-reason, initiated by Peer, code=320, text='CONNECTION_FORCED - broker forced connection closure with reason 'shutdown'', classId=0, methodId=0
+   at RabbitMQ.Client.Framing.Impl.AutorecoveringConnection.CreateModel()
+   at Domic.Core.Infrastructure.Concretes.ExternalMessageBroker.<>c__DisplayClass18_0`1.<PublishAsync>b__3()
+   at System.Threading.ExecutionContext.RunFromThreadPoolDispatchLoop(Thread threadPoolThread, ExecutionContext executionContext, ContextCallback callback, Object state)
+--- End of stack trace from previous location ---
+   at System.Threading.ExecutionContext.RunFromThreadPoolDispatchLoop(Thread threadPoolThread, ExecutionContext executionContext, ContextCallback callback, Object state)
+   at System.Threading.Tasks.Task.ExecuteWithThreadLocal(Task& currentTaskSlot, Thread threadPoolThread)
+--- End of stack trace from previous location ---
+   at Polly.AsyncPolicy.<>c__DisplayClass40_0.<<ImplementationAsync>b__0>d.MoveNext()
+--- End of stack trace from previous location ---
+   at Polly.Retry.AsyncRetryEngine.ImplementationAsync[TResult](Func`3 action, Context context, CancellationToken cancellationToken, ExceptionPredicates shouldRetryExceptionPredicates, ResultPredicates`1 shouldRetryResultPredicates, Func`5 onRetryAsync, Int32 permittedRetryCount, IEnumerable`1 sleepDurationsEnumerable, Func`4 sleepDurationProvider, Boolean continueOnCapturedContext)
+   at Polly.AsyncPolicy.ExecuteAsync(Func`3 action, Context context, CancellationToken cancellationToken, Boolean continueOnCapturedContext)
+   at Domic.Core.Infrastructure.Extensions.ExceptionExtension.CentralExceptionLoggerAsync(Exception e, IHostEnvironment hostEnvironment, IGlobalUniqueIdGenerator globalUniqueIdGenerator, IExternalMessageBroker externalMessageBroker, IDateTime dateTime, String service, String action, CancellationToken cancellationToken) 
+
