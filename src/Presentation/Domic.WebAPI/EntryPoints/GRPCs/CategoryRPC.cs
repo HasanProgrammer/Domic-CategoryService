@@ -6,7 +6,7 @@ using Domic.UseCase.CategoryUseCase.Commands.CheckExist;
 using Domic.UseCase.CategoryUseCase.Commands.Create;
 using Domic.UseCase.CategoryUseCase.Commands.Delete;
 using Domic.UseCase.CategoryUseCase.Commands.Update;
-using Domic.UseCase.CategoryUseCase.DTOs.ViewModels;
+using Domic.UseCase.CategoryUseCase.DTOs;
 using Domic.UseCase.CategoryUseCase.Queries.ReadAllPaginated;
 using Domic.UseCase.CategoryUseCase.Queries.ReadOne;
 using Domic.WebAPI.Frameworks.Extensions.Mappers.CategoryMappers;
@@ -49,7 +49,7 @@ public class CategoryRPC : CategoryService.CategoryServiceBase
     {
         var query = request.ToQuery<ReadOneQuery>();
         
-        var result = await _mediator.DispatchAsync<CategoriesViewModel>(query, context.CancellationToken);
+        var result = await _mediator.DispatchAsync<CategoryDto>(query, context.CancellationToken);
 
         return result.ToRpcResponse<ReadOneResponse>(_configuration);
     }
@@ -67,7 +67,7 @@ public class CategoryRPC : CategoryService.CategoryServiceBase
         var query = request.ToQuery<ReadAllPaginatedQuery>();
         
         var result =
-            await _mediator.DispatchAsync<PaginatedCollection<CategoriesViewModel>>(query, context.CancellationToken);
+            await _mediator.DispatchAsync<PaginatedCollection<CategoryDto>>(query, context.CancellationToken);
 
         return result.ToRpcResponse<ReadAllPaginatedResponse>(_configuration);
     }

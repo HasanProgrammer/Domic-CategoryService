@@ -1,7 +1,7 @@
 using Domic.Core.Common.ClassHelpers;
 using Domic.Core.Category.Grpc;
 using Domic.Core.Infrastructure.Extensions;
-using Domic.UseCase.CategoryUseCase.DTOs.ViewModels;
+using Domic.UseCase.CategoryUseCase.DTOs;
 
 namespace Domic.WebAPI.Frameworks.Extensions.Mappers.CategoryMappers;
 
@@ -34,7 +34,7 @@ public static partial class RpcResponseExtension
     /// <param name="configuration"></param>
     /// <typeparam name="T"></typeparam>
     /// <returns></returns>
-    public static T ToRpcResponse<T>(this CategoriesViewModel model, IConfiguration configuration)
+    public static T ToRpcResponse<T>(this CategoryDto model, IConfiguration configuration)
     {
         object Response = null;
 
@@ -57,7 +57,7 @@ public static partial class RpcResponseExtension
     /// <param name="configuration"></param>
     /// <typeparam name="T"></typeparam>
     /// <returns></returns>
-    public static T ToRpcResponse<T>(this PaginatedCollection<CategoriesViewModel> models, IConfiguration configuration)
+    public static T ToRpcResponse<T>(this PaginatedCollection<CategoryDto> models, IConfiguration configuration)
     {
         object Response = null;
 
