@@ -21,7 +21,7 @@ services:
       - "1060-1080:443"
     volumes:
       - log:/app/CoreLogs
-      - ~\.aspnet\https\:/https/
+      - ~/services/Domic-CategoryService/.https/:/https/
     environment:
       - Elastic-Host=http://domic.elastic.search:9200
       - Elastic-Index=category
