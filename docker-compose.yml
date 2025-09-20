@@ -48,29 +48,29 @@ services:
       - ASPNETCORE_URLS=https://+:443;http://+:80
       - ASPNETCORE_Kestrel__Certificates__Default__Password=Domic123!@#
       - ASPNETCORE_Kestrel__Certificates__Default__Path=/https/Domic.WebAPI.pfx
-    depends_on:
+#    depends_on:
 #      - domic.category.command.sql.server
 #      - domic.category.redis
   
-  domic.category.command.sql.server:
-    networks:
-      - domic
-    image: 'mcr.microsoft.com/mssql/server'
-    container_name: 'category_command_sql_server'
-    ports:
-      - 1434:1433
-    environment:
-      - ACCEPT_EULA=Y
-      - SA_PASSWORD=Domic123!@#
-  
-  domic.category.redis:
-    networks:
-      - domic
-    image: 'redis'
-    container_name: 'category_redis'
-    command: 'redis-server'
-    ports:
-      - 8379:6379
+#  domic.category.command.sql.server:
+#    networks:
+#      - domic
+#    image: 'mcr.microsoft.com/mssql/server'
+#    container_name: 'category_command_sql_server'
+#    ports:
+#      - 1434:1433
+#    environment:
+#      - ACCEPT_EULA=Y
+#      - SA_PASSWORD=Domic123!@#
+#  
+#  domic.category.redis:
+#    networks:
+#      - domic
+#    image: 'redis'
+#    container_name: 'category_redis'
+#    command: 'redis-server'
+#    ports:
+#      - 8379:6379
 
 volumes:
   log:
