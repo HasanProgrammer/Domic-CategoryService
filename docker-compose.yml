@@ -40,7 +40,7 @@ services:
       - I-RedisConnectionString=domic.redis.6379
       - MongoConnectionString=
 #     - C-SqlServerConnectionString=Server=domic.category.command.sql.server,1433;Database=CategoryService;User ID=sa;Password=Domic123!@#;MultipleActiveResultSets=true;Integrated Security=false;
-      - C-SqlServerConnectionString=Server=domic.sql.server,1433;Database=CategoryService;User ID=sa;Password=Domic123!@#;MultipleActiveResultSets=true;Integrated Security=false;
+      - C-SqlServerConnectionString=Server=domic.sql.server,1433;Database=CategoryService;User ID=sa;Password=Domic123!@#;MultipleActiveResultSets=true;Integrated Security=false;Encrypt=False;
       - Q-SqlServerConnectionString=
       - Host=domic.category.api
       - Port=443
