@@ -73,9 +73,6 @@ services:
 #   ports:
 #     - 8379:6379
 
-volumes:
-  log:
-
 networks:
   domic:
     external: true
