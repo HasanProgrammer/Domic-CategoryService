@@ -57,7 +57,7 @@ services:
 #   networks:
 #     - domic
 #   image: 'mcr.microsoft.com/mssql/server'
-#   container_name: 'category_command_sql_server'
+#   container_name: 'domic_category_command_sql_server'
 #   ports:
 #     - 1434:1433
 #   environment:
@@ -68,7 +68,7 @@ services:
 #   networks:
 #     - domic
 #   image: 'redis'
-#   container_name: 'category_redis'
+#   container_name: 'domic_category_redis'
 #   command: 'redis-server'
 #   ports:
 #     - 8379:6379
